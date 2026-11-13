@@ -18,6 +18,7 @@ import {
   submitRequest,
   type HomeCategory,
 } from "../apiservices/HomeService";
+import { getCategoryImage } from "../utils/categoryImage";
 import ServiceDetailsDialog from "./components/ServiceDetailsDialog";
 import type { AuthUser } from "../formtypes/AuthTypes";
 import type {
@@ -163,6 +164,7 @@ function SelectedService({
   const selectedService = category.services?.find(
     (service) => service.toLowerCase() === requestedService?.toLowerCase(),
   );
+  const categoryImage = getCategoryImage(category.name, category.image);
   const serviceTitle = selectedService ?? category.name;
   const requestMessage = selectedService
     ? `Hello Alfred, I would like help with ${selectedService} under ${category.name}.`
@@ -219,9 +221,9 @@ function SelectedService({
     <main className="min-h-screen bg-(--color-background) px-4 py-8 text-(--color-ink) sm:px-6 lg:px-8 lg:py-10">
       <div className="mx-auto grid max-w-6xl items-start gap-6 lg:grid-cols-[minmax(0,1.25fr)_minmax(340px,0.85fr)]">
         <article className="overflow-hidden rounded-(--radius-medium) border border-(--color-border) bg-(--color-surface) shadow-(--shadow-soft)">
-          {category.image && !imageFailed ? (
+          {categoryImage && !imageFailed ? (
             <img
-              src={category.image}
+              src={categoryImage}
               alt={category.name}
               onError={() => setImageFailed(true)}
               className="h-64 w-full object-cover sm:h-72 lg:h-80"

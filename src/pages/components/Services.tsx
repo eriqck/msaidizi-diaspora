@@ -10,6 +10,7 @@ import familyErrandsImage from "../../assets/family-errands-concierge.png";
 import governmentServicesImage from "../../assets/government-services.png";
 import investmentImage from "../../assets/investment-types.png";
 import landPropertyPurchaseImage from "../../assets/land-property-purchase.png";
+import { getCategoryImage } from "../../utils/categoryImage";
 import {
   fetchCategories,
   type HomeCategory,
@@ -172,65 +173,71 @@ function Services() {
           <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {!loading &&
               !error &&
-              categories.map((category) => (
-                <article
-                  key={category.id}
-                  className="group flex flex-col overflow-hidden rounded-(--radius-medium) border border-(--color-border) bg-(--color-surface) shadow-sm transition hover:-translate-y-1 hover:shadow-(--shadow-soft)"
-                >
-                  <div className="relative">
-                    {category.image ? (
-                      <img
-                        src={category.image}
-                        alt={`${category.name} services`}
-                        loading="lazy"
-                        className="aspect-video w-full object-cover"
-                      />
-                    ) : (
-                      <div
-                        className="grid aspect-video place-items-center bg-(--color-primary)/8 text-(--color-primary)"
-                        aria-hidden="true"
-                      >
-                        <ImageIcon className="h-8 w-8" />
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="flex flex-1 flex-col p-5">
-                    <h2 className="text-xl font-extrabold">{category.name}</h2>
-
-                    <div className="mt-4 flex-1 space-y-2">
-                      {(category.services ?? []).map((service) => (
+              categories.map((category) => {
+                const categoryImage = getCategoryImage(
+                  category.name,
+                  category.image,
+                );
+                return (
+                  <article
+                    key={category.id}
+                    className="group flex flex-col overflow-hidden rounded-(--radius-medium) border border-(--color-border) bg-(--color-surface) shadow-sm transition hover:-translate-y-1 hover:shadow-(--shadow-soft)"
+                  >
+                    <div className="relative">
+                      {categoryImage ? (
+                        <img
+                          src={categoryImage}
+                          alt={`${category.name} services`}
+                          loading="lazy"
+                          className="aspect-video w-full object-cover"
+                        />
+                      ) : (
                         <div
-                          key={service}
-                          className="flex items-center justify-between gap-3"
+                          className="grid aspect-video place-items-center bg-(--color-primary)/8 text-(--color-primary)"
+                          aria-hidden="true"
                         >
-                          <span className="text-sm leading-6 text-(--color-muted)">
-                            {service}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={() => setServiceDetails({ category, service })}
-                            className="shrink-0 rounded-full border border-(--color-primary)/30 px-3 py-1 text-xs font-extrabold text-(--color-primary) transition hover:bg-(--color-primary) hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-primary)"
-                          >
-                            Details
-                          </button>
+                          <ImageIcon className="h-8 w-8" />
                         </div>
-                      ))}
+                      )}
                     </div>
 
-                    <Link
-                      to={`/services/${category.id}`}
-                      className="mt-6 inline-flex items-center justify-center gap-2 rounded-(--radius-small) bg-(--color-primary) px-5 py-3 font-extrabold text-white transition hover:bg-(--color-accent) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
-                    >
-                      <span className="text-white">Request this service</span>
-                      <ArrowRight
-                        className="h-4 w-4 text-white"
-                        aria-hidden="true"
-                      />
-                    </Link>
-                  </div>
-                </article>
-              ))}
+                    <div className="flex flex-1 flex-col p-5">
+                      <h2 className="text-xl font-extrabold">{category.name}</h2>
+
+                      <div className="mt-4 flex-1 space-y-2">
+                        {(category.services ?? []).map((service) => (
+                          <div
+                            key={service}
+                            className="flex items-center justify-between gap-3"
+                          >
+                            <span className="text-sm leading-6 text-(--color-muted)">
+                              {service}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => setServiceDetails({ category, service })}
+                              className="shrink-0 rounded-full border border-(--color-primary)/30 px-3 py-1 text-xs font-extrabold text-(--color-primary) transition hover:bg-(--color-primary) hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-primary)"
+                            >
+                              Details
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+
+                      <Link
+                        to={`/services/${category.id}`}
+                        className="mt-6 inline-flex items-center justify-center gap-2 rounded-(--radius-small) bg-(--color-primary) px-5 py-3 font-extrabold text-white transition hover:bg-(--color-accent) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+                      >
+                        <span className="text-white">Request this service</span>
+                        <ArrowRight
+                          className="h-4 w-4 text-white"
+                          aria-hidden="true"
+                        />
+                      </Link>
+                    </div>
+                  </article>
+                );
+              })}
 
             <article className="group flex flex-col overflow-hidden rounded-(--radius-medium) border border-(--color-border) bg-(--color-surface) shadow-sm transition hover:-translate-y-1 hover:shadow-(--shadow-soft)">
               <img

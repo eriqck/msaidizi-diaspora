@@ -20,6 +20,7 @@ import {
   submitRequest,
   type HomeCategory,
 } from "../apiservices/HomeService";
+import { getCategoryImage } from "../utils/categoryImage";
 import type { AuthUser } from "../formtypes/AuthTypes";
 import type {
   SubmitRequestData,
@@ -402,7 +403,7 @@ function AllSelectedServices() {
                           }`}
                         >
                           <ServiceImage
-                            src={category.image}
+                            src={getCategoryImage(category.name, category.image)}
                             alt={category.name}
                             className="aspect-video w-full"
                           />

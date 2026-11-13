@@ -12,6 +12,7 @@ import {
   type HomeCategory,
 } from "../../apiservices/HomeService";
 import welcomeHeroImage from "../../assets/welcome-hero.png";
+import { getCategoryImage } from "../../utils/categoryImage";
 import ServiceDetailsDialog from "./ServiceDetailsDialog";
 
 const AUTOPLAY_MS = 7000;
@@ -190,6 +191,7 @@ function Hero() {
           </div>
           {categories.map((category, i) => {
             const active = i + 1 === index;
+            const categoryImage = getCategoryImage(category.name, category.image);
             return (
               <div
                 key={category.id}
@@ -199,9 +201,9 @@ function Hero() {
                 aria-hidden={!active}
                 className="relative flex min-h-[min(760px,85svh)] w-full shrink-0 items-center px-7 pb-28 pt-16 sm:px-10 lg:px-14 lg:pb-32"
               >
-                {category.image && (
+                {categoryImage && (
                   <img
-                    src={category.image}
+                    src={categoryImage}
                     alt=""
                     aria-hidden="true"
                     loading={i === 0 ? "eager" : "lazy"}

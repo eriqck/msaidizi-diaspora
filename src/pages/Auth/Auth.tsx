@@ -179,7 +179,7 @@ export default function Auth() {
 
           <div className="relative">
             <Link to="/" className="text-2xl font-black tracking-tight">
-              Diaspora <span className="text-(--color-secondary)">Help</span>
+              Msaidizi <span className="text-(--color-secondary)">Diaspora</span>
             </Link>
             <p className="mt-12 text-sm font-extrabold uppercase tracking-[0.16em] text-(--color-secondary)">
               Your requests, all in one place
