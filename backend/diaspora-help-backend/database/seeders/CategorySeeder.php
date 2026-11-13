@@ -15,14 +15,17 @@ class CategorySeeder extends Seeder
         $categories = [
             [
                 'name' => 'Events Planning',
+                'image' => 'e1558e1f-3982-4ddf-90b1-2e8b2be94644.jpg',
                 'services' => ['Dowry', 'Weddings', 'Birthdays'],
             ],
             [
                 'name' => 'Tours & Travel',
+                'image' => 'addd183d-6007-4bee-a28d-ea80f54503da.jpg',
                 'services' => ['Hotel Bookings', 'Destinations', 'Ticketing'],
             ],
             [
                 'name' => 'Car Hire',
+                'image' => 'd5515acf-defc-4ce2-8cfb-faf1b7f0cb2d.jpg',
                 'services' => ['Airport Pickup', 'Offroad Vehicles'],
             ],
         ];
@@ -30,7 +33,10 @@ class CategorySeeder extends Seeder
         foreach ($categories as $category) {
             Categories::updateOrCreate(
                 ['name' => $category['name']],
-                ['services' => $category['services']],
+                [
+                    'image' => $category['image'],
+                    'services' => $category['services'],
+                ],
             );
         }
     }

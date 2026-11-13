@@ -25,7 +25,7 @@ For macOS/Linux, use `cp .env.example .env` and `touch database/database.sqlite`
 
 The local API base URL is `http://localhost:8000/api`. Configure the frontend's `VITE_API_URL` to use that value. CORS must allow the frontend's origin.
 
-Migrations create the database schema, and the seeder adds the public Events Planning, Tours & Travel, and Car Hire categories. It does not include user accounts, requests, uploaded images, or the local SQLite database; add private/runtime data through the application.
+Migrations create the database schema, and the seeder adds the public Events Planning, Tours & Travel, and Car Hire categories with their checked-in category images. The live SQLite database, user accounts, requests, and user-uploaded files are not included.
 
 ## API overview
 

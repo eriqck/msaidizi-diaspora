@@ -107,7 +107,7 @@ npm run dev
 
 Open the local URL printed by Vite. The API must allow requests from the frontend origin through its CORS configuration.
 
-> **Database data:** migrations create the schema and the included seeder adds the public Events Planning, Tours & Travel, and Car Hire categories. The live SQLite database, user accounts, service requests, and uploaded images are not included.
+> **Database data:** migrations create the schema and the included seeder adds the public Events Planning, Tours & Travel, and Car Hire categories with their checked-in images. The live SQLite database, user accounts, service requests, and user-uploaded files are not included.
 
 ## Environment configuration
 
@@ -191,7 +191,7 @@ The current Vite configuration assumes the frontend is served from the domain ro
 
 ## Data and secrets
 
-The repository contains application source, migrations, and seed data for public service categories—not live accounts, service requests, uploaded images, or the local SQLite database. Generated dependencies such as `node_modules/` and `vendor/` are also excluded. Keep production credentials and private user data out of commits.
+The repository contains application source, migrations, seed data, and checked-in category image assets—not live accounts, service requests, user-uploaded files, or the local SQLite database. Generated dependencies such as `node_modules/` and `vendor/` are also excluded. Keep production credentials and private user data out of commits.
 
 ## Attribution
 
